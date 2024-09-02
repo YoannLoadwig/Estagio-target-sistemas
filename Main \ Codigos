@@ -1,0 +1,128 @@
+1)
+indice = 13
+soma = 0
+K = 0
+
+while K < indice:
+
+   K = K + 1
+
+   soma = soma + K
+
+print (soma)
+
+
+
+
+
+2)
+Termo1 = 0
+Termo2 = 1
+Termo3 = 0
+
+print('-' * 42)
+print(' ' * 3, 'Consulta da Sequência de Fibonacci')
+print('-' * 42)
+
+Valor = int(input('Digite um número: '))
+
+# Se valor for 0 or 1, ele pertence à sequência.
+if Valor == 0 or Valor == 1:
+    print(f'O número {Valor} pertence à sequência de Fibonacci.')
+else:
+    while Valor > Termo3:
+        Termo3 = Termo1 + Termo2
+        Termo1 = Termo2
+        Termo2 = Termo3
+
+    # Verifica se o número pertence à sequência.
+    if Valor == Termo3:
+        print(f'O número {Valor} pertence à sequência de Fibonacci.')
+    else:
+        print(f'O número {Valor} não pertence à sequência de Fibonacci.')
+
+
+
+
+
+3)
+import json
+
+def analisar_faturamento_anual(arquivo_json):
+    # Leitor json
+    with open(arquivo_json, 'r') as f:
+        dados = json.load(f)
+
+    # Extrai os valores de faturamento
+    faturamento_diario = [dia['valor'] for dia in dados if dia['valor'] > 0]
+
+    if not faturamento_diario:
+        raise ValueError("Não há dados de faturamento válidos.")
+
+    # Menor valor de faturamento diário
+    menor_valor = min(faturamento_diario)
+
+    # Maior valor de faturamento diário
+    maior_valor = max(faturamento_diario)
+
+    # Média anual de faturamento, ignora dias sem faturamento
+    media_anual = sum(faturamento_diario) / len(faturamento_diario)
+
+    # Conta o número de dias em que o faturamento diário foi superior à média anual
+    dias_acima_da_media = len([f for f in faturamento_diario if f > media_anual])
+
+    return {
+        'menor_faturamento': menor_valor,
+        'maior_faturamento': maior_valor,
+        'dias_acima_da_media': dias_acima_da_media
+    }
+
+# Exemplo de uso
+arquivo_json = 'faturamento.json'  # Substitua pelo caminho do seu arquivo JSON
+resultados = analisar_faturamento_anual(arquivo_json)
+
+print(f"Menor valor de faturamento: {resultados['menor_faturamento']}")
+print(f"Maior valor de faturamento: {resultados['maior_faturamento']}")
+print(f"Número de dias com faturamento acima da média: {resultados['dias_acima_da_media']}")
+
+
+
+
+
+
+4)
+# Valores de faturamento
+faturamento = {
+    'SP': 67836.43,
+    'RJ': 36678.66,
+    'MG': 29229.88,
+    'ES': 27165.48,
+    'Outros': 19849.53
+}
+
+# Calcular o valor total do faturamento
+faturamento_total = sum(faturamento.values())
+
+# Calcular o percentual de cada estado
+for estado, valor in faturamento.items():
+    percentual = (valor / faturamento_total) * 100
+    print(f"{estado}: {percentual:.2f}%")
+
+
+
+
+
+
+
+5)
+def inverter_string(s):
+    # String vazia para armazenar o resultado
+    resultado = ''
+    # Final para o começo
+    for in_put in range(len(s) - 1, -1, -1):
+        resultado += s[in_put]
+    return resultado
+
+# Solicita a entrada do usuário
+entrada = input("Digite uma string para inverter: ")
+print("A string foi invertida para:", inverter_string(entrada))
